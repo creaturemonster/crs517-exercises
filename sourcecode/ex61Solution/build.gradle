@@ -1,0 +1,4 @@
+dependencies {
+    compile libraries.spring_mvc, libraries.validation
+    compileOnly libraries.servlet
+}

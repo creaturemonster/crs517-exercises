@@ -1,0 +1,5 @@
+dependencies {
+    compile libraries.spring_mvc, libraries.hibernate
+    compileOnly libraries.servlet
+    runtime libraries.jdbc_driver, libraries.jaxb, libraries.activation
+}

@@ -1,0 +1,4 @@
+dependencies {
+    compile libraries.spring_core, libraries.spring_jdbc
+    runtime libraries.jdbc_driver, libraries.dbcp
+}

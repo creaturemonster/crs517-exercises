@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "///W3C//DTD HTML 4.01 Strict//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+<style TYPE="text/css" MEDIA=screen>
+<!--
+  .mainText  {
+     font-family: arial;
+     color: #000000;
+
+  }
+  html,body { width: 700px;}
+-->
+</style>
+
+
+<title>Hibernate Annotations Tutorial</title>
+</head>
+
+
+<body class="mainText">
+
+  <h3>Hibernate Annotations</h3>
+
+  Hibernate annotations enable the XML class mappings to be defined with Java 5 annotations.
+
+  <p/>
+  Working with Hibernate using annotation mapping is very similar to working with XML mapping.
+  <p/>
+  In the following example we will map the Duration class using annotations.
+  <br/>
+  Notice that the annotations being used are in the package javax.persistence. <br/>
+
+  Many of the Hibernate annotations are compatible with JPA annotations. <br/>
+
+
+<pre>
+import java.io.Serializable;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Entity;
+
+
+<b>@Entity</b>
+public class Duration implements Serializable{
+
+	private long id;
+	private int seconds;
+	private int minutes;
+	private int hours;
+
+
+	<b>@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)</b>
+	public long getId() {
+		return id;
+	}
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public int getSeconds(){ return seconds;}
+	public void setSeconds(int seconds){this.seconds = seconds;}
+
+	public int getMinutes(){ return minutes;}
+	public void setSeconds(int minutes){this.minutes = minutes;}
+
+	public int getHours(){ return hours;}
+	public void setHours(int hours){this.hours = hours;}
+}
+
+</pre>
+
+<br/>
+<h4>Setting Up the Environment</h4>
+
+Setting up the hibernate environment requires using an AnnotationConfiguration class rather than
+the Configuration class for creating the SessionFactory. Also, in the file hibernate.cfg.xml
+the annotated Java class files are marked using the &lt;mapping&gt; element, rather than the xml files.
+The examples below show an example HibernateUtil class and a hibernate.cfg.xml file.
+
+<br/>
+
+<h6>HibernateUtil.java</h6>
+<pre>
+public class HibernateUtil {
+
+	private static final SessionFactory sessionFactory;
+
+	static {
+		try {
+	 	 sessionFactory = new org.hibernate.cfg.<b>AnnotationConfiguration()</b>.
+		 configure().buildSessionFactory();
+		} catch (Throwable ex) {
+		// Log exception!
+		   throw new ExceptionInInitializerError(ex);
+		}
+	}
+
+	public static Session getSession() throws org.hibernate.HibernateException {
+		return sessionFactory.getCurrentSession();
+	}
+}
+
+</pre>
+
+
+   <h6>hibernate.cfg.xml</h6>
+
+<pre>
+&lt;hibernate-configuration&gt;
+    &lt;session-factory&gt;
+        &lt;property name="hibernate.dialect"&gt;org.hibernate.dialect.MySQL5Dialect&lt;/property&gt;
+        &lt;property name="hbm2ddl.auto">create&lt;/property&gt;
+
+		&lt;property name="connection.driver_class">com.mysql.jdbc.Driver&lt;/property&gt;
+		&lt;property name="connection.url">jdbc:mysql://localhost:3306/dentalportal&lt;/property&gt;
+		&lt;property name="connection.username">dental&lt;/property&gt;
+		&lt;property name="connection.password">dentccz&lt;/property&gt;
+
+	<!-- JDBC connection pool (use the built-in) -->
+
+		&lt;property name="connection.pool_size">1&lt;/property&gt;
+
+		&lt;property name="current_session_context_class"&gt;thread&lt;/property&gt;
+
+		<b>&lt;mapping class="rain.Duration"/&gt;</b>
+
+	&lt;/session-factory&gt;
+&lt;/hibernate-configuration&gt;
+
+</pre>
+
+<h4>Library Requirements</h4>
+
+Using hibernate annotations requires the following libraries in the classpath
+<br/>
+hibernate-commons-annotations.jar <br/>
+hibernate3.jar<br/>
+ejb3-persistence.jar<br/>
+
+
+
+
+ <h4> Usage Example</h4>
+
+ The code to work with annotated classes is exactly the same as for those that use XML mapping.
+<pre>
+	Duration duration = new Duration(10,20,30);
+	Session session = HibernateUtil.getSession();
+	session.beginTransaction();
+	session.save(duration);
+	session.getTransaction().commit();
+</pre>
+
+
+<h3>Other Annotations</h3>
+Hibernate provides annotations for many other mappings, for example @OneToOne,  @OneToMany, @ManyToMay.
+See the <a href="c:\hibernate-annotations-3.4.0.GA/doc/reference/en/pdf/hibernate_annotations.pdf">documentation</a> for details
+
+
+</body>
+</html>

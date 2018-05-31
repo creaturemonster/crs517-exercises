@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+                "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+
+<!-- TODO
+	Make any modifications you think are necessary to support 
+	the one-many relationship with MusicRecording
+-->
+
+
+<hibernate-mapping>
+        <class name="rain.Track">
+                <id name="id">
+                   <generator class="native"/>
+                </id>
+                <property name="title"/>
+                <property name="composer"/>
+			    <component name="duration">
+					<property name="hours"/>
+					<property name="minutes"/>					
+					<property name="seconds"/>					
+				</component>
+        </class>
+</hibernate-mapping>

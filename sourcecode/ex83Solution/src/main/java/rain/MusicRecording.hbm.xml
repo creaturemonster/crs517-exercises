@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+		"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+		"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+  <joined-subclass name="rain.MusicRecording" extends="rain.Recording"> 
+		
+	    <key column="id"/>
+		<property name="artist"/>
+		<property name="publisher"/>
+
+	    <!-- TODO
+			Define the mapping with Track to support a one-to-many
+			relationship.
+			Use a <list> which enables you to support the
+			order of Tracks in the relationship
+		-->
+	  
+
+	    <list name="tracks" cascade="all" lazy="false">
+			<key column="recording_id" not-null="true"/>
+			<list-index column="position"/>
+			<one-to-many class="rain.Track"/>
+		</list>
+  </joined-subclass>
+
+</hibernate-mapping>

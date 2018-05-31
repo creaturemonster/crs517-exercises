@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:jee="http://www.springframework.org/schema/jee"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans  http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		                    http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd">
+
+
+
+
+	<!-- TODO
+		Configure a JavaBean with the id dataSource.
+		This will use the DataSource with JNDI name java:comp/env/jdbc/RainForestDB
+		Hint: Use the jee XML namespace element jndi-lookup
+		
+	-->
+
+		
+	<jee:jndi-lookup id="dataSource" jndi-name="java:comp/env/jdbc/RainForestDB"/>
+
+
+	<!-- TODO
+		Configure a JavaBean with the id videoDao
+		This should be a JavaBean whose type is your new Spring Template based DAO
+		Set the DataSource on the DAO
+	-->
+
+	
+	<bean id="videoDao" class="rain.SpringJdbcTemplateVideoDao">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+
+
+	<!-- TODO
+		Configure a JavaBean with the id rainforestService
+		This should be a JavaBean whose implementation is rain.RainforestService.
+		Set the videoDao property on this bean
+	-->	
+
+
+	<bean id="rainforestService" class="rain.RainforestService">
+		<property name="videoDao" ref="videoDao"/>
+	</bean>
+
+
+
+</beans>

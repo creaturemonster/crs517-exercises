@@ -1,0 +1,76 @@
+html, body{
+  margin:0;
+  padding:0;
+  top:0;
+  left:0;	
+  margin-left: 50px;
+  margin-top: 50px;
+  color: #555555;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 11pt;
+  
+}
+
+ul{
+   list-style: square;	
+}
+
+h3{
+   font-size: 12pt;
+   font-weight: bold;	
+}
+
+
+#contactPage {
+    width: 700px;
+}
+
+#contactPage p {
+    padding: 2px;
+    margin-left: 30px;
+    text-align:  left;
+    color: #666;    
+    font-family: Arial,Helvetica, sans-serif;
+    font-size: 11pt;
+}
+
+#contactPage form {
+    padding: 10px;
+}
+
+#contactPage form label {
+    font-size: 90%;
+    text-align: left;
+}
+
+#contactPage form input {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 85%;
+    padding: 2px 4px;
+}
+
+#contactPage form textarea {
+    font-family: Arial,Helvetica, sans-serif;;
+    padding: 2px 1px 2px 4px;
+    overflow: auto;
+}
+
+#contactPage p {
+	float: left;
+    margin: 0px 25px;
+    width: 70%;
+    font-size: 80%;
+    text-align: left;
+}
+
+
+
+
+.validationErrors{
+    text-align:  left;
+    color: #ff0000;
+    font-family: Arial,Helvetica, sans-serif;
+    font-size: 10pt;
+    font-size: 90%;
+}
+

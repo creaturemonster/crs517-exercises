@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+		"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+		"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+
+	<!-- TODO
+		
+		Define the mapping for MusicRecording.
+		Use the <joined-subclass> approach to implementation
+		
+		Provide mappings for the MusicRecording fields:
+		
+			artist
+			publisher
+		   
+		    Do not forget the key mapping definition
+	-->
+
+
+
+  <joined-subclass name="rain.MusicRecording" extends="rain.Recording"> 
+		
+	    <key column="id"/>
+		<property name="artist"/>
+		<property name="publisher"/>
+  </joined-subclass>
+
+</hibernate-mapping>

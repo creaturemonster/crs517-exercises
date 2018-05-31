@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:aop="http://www.springframework.org/schema/aop"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans  http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+
+     
+     <bean id="rainforestService" class="rain.RainforestService"/>
+     
+     <bean id="beforeAdvice" class="BeforeAdviceExample"/>
+     
+     
+     <!-- 
+ 		TODO:
+ 		Note the definition of the pointcut and the aspect below
+ 		
+ 		Examine the code in the class rain.RainforestService and note its methods
+ 		
+ 		Notice how the pointcut below advises the rainforestService bean above    
+     
+      -->
+     
+     
+     <aop:config>
+        <aop:pointcut id="rainforestServicePointCut" expression="execution(* rain.RainforestService.*(..))"/>
+        
+        <aop:aspect ref="beforeAdvice">
+           <aop:before method="beforeMethod" pointcut-ref="rainforestServicePointCut"/>
+        </aop:aspect>
+        
+     </aop:config>
+                           
+                           
+</beans>                           

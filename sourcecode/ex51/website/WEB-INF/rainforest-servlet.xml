@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:context="http://www.springframework.org/schema/context"
+		xsi:schemaLocation="
+		                    http://www.springframework.org/schema/beans  
+		                    http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		                    http://www.springframework.org/schema/context
+		                    http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	
+
+	<!-- TODO
+	
+		Note the configuration of the Spring factory to scan the package rain, looking for,
+		and processing annotated controllers.
+		  
+	 -->
+
+    	
+	
+	<context:component-scan base-package="rain"/>
+	
+	
+	
+	<!--  TODO
+	  Note the prefix and suffix added to the view names
+	
+	 -->
+	
+	
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	  <property name="prefix" value="/video/"/>
+	  <property name="suffix" value=".jsp"/>
+	</bean>
+		
+</beans>

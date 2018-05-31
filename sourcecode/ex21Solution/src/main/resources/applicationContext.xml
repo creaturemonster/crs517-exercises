@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans  http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- TODO Read the XML below for messageRenderer and note how your class is used -->
+
+
+	<bean id="messageRenderer" class="ConsoleRenderer">
+		<property name="messageProvider" ref="messageProvider"/>
+	</bean>
+	
+	
+	
+	<!-- TODO set the attribute class to the name of your message provider implementation -->
+	
+	<bean id="messageProvider" class="HelloWorldMessageProvider"/>
+
+</beans>

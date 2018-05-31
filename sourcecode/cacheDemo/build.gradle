@@ -1,0 +1,4 @@
+dependencies {
+    compile libraries.hibernate_ehcache
+    runtime libraries.jdbc_driver, libraries.jaxb, libraries.activation
+}

@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+                "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+                "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+        <class name="rain.Track">
+                <id name="id">
+                        <generator class="native"/>
+                </id>
+
+   
+				<!-- TODO 
+					Define the fields for the title and composer of the Track class
+				-->
+
+                <property name="title" type="string" length="100"/>
+                <property name="composer"  type="string" length="100"/>
+
+			
+				<!-- TODO
+					Define the relationship with the Duration class here as
+					a one-to-one relationship. 
+					Hint: Use the component method.
+				--> 
+
+			    <component name="duration" class="rain.Duration">
+					<property name="hours"/>
+					<property name="minutes"/>					
+					<property name="seconds"/>					
+				</component>			
+			
+        </class>
+</hibernate-mapping>

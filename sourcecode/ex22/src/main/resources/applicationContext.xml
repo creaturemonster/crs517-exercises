@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans  http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+
+	<!-- TODO Define a bean with an id videoDao
+		 Set the class attribute to your VideoDao implementation class
+		 Remember that the class is in the package rain
+	-->
+
+	<bean > 
+	</bean>
+		
+		
+	<!-- TODO Define a bean with an id rainforestService
+		 Set the class attribute to your service class
+		 You should use dependency injection here to set the
+		 videoDao property
+	-->
+
+	<bean>
+		<property /> 
+	</bean>
+	
+		
+</beans>

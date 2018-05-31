@@ -1,0 +1,5 @@
+dependencies {
+    compile libraries.mail
+    compileOnly libraries.servlet
+    runtime libraries.jdbc_driver
+}

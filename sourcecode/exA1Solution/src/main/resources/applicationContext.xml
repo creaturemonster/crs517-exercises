@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:aop="http://www.springframework.org/schema/aop"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans  http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+                           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+
+
+
+	<bean id="messageRenderer" class="ConsoleRenderer">
+		<property name="messageProvider" ref="messageProvider"/>
+	</bean>
+	
+	
+	<bean id="messageProvider" class="HelloWorldMessageProvider"/>
+
+
+<!--  TODO  Define a bean for your profile advisor -->
+	
+	<bean id="profileAdvisor" class="ProfileAdvice"/>
+
+	
+	
+	<aop:config>
+	
+<!-- 
+
+		TODO 
+		
+		Define a pointcut with an id "allGetMethods" whose expression selects all methods beginning with the word get
+ -->	
+	
+		<aop:pointcut id="allGetMethods"
+					expression="execution(* *.get*(..))"/>
+
+
+<!-- 
+
+		TODO 
+		
+		Define an aspect that will apply the profileAdvisor to every get method 
+		
+-->
+
+
+		<aop:aspect  ref="profileAdvisor">
+			<aop:around pointcut-ref="allGetMethods" method="profile"/>
+		</aop:aspect>
+</aop:config>	
+
+</beans>
