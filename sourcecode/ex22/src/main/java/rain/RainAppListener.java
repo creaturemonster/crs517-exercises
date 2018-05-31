@@ -22,7 +22,7 @@ public class RainAppListener implements ServletContextListener {
 
 
 
-		// Add to application context
+		// Add to ServletContext
 		application.setAttribute(Constants.RAINFOREST_SERVICE_KEY, rainforestService);
 
 

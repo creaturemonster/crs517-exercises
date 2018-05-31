@@ -31,7 +31,7 @@ public class RainAppListener implements ServletContextListener {
 		
 		RainforestService rainforestService = context.getBean("rainforestService", RainforestService.class);
 		
-		// Add to application context
+		// Add to ServletContext
 		application.setAttribute(Constants.RAINFOREST_SERVICE_KEY, rainforestService);
 
 
