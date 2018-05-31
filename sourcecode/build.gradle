@@ -14,7 +14,7 @@ allprojects {
 	configurations {
 		runtime.exclude group: 'javax.servlet', module: 'servlet-api'
 		runtime.exclude group: 'javax.servlet.jsp', module: 'jsp-api'
-		runtime.exclude group: 'javax.annotation', module: 'javax.annotation-api'
+		//runtime.exclude group: 'javax.annotation', module: 'javax.annotation-api'
 	}
 	
 	eclipse {
