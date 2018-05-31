@@ -14,7 +14,10 @@ ext {
 		spring_orm: "org.springframework:spring-orm:${springVersion}",
 		hibernate: "org.hibernate:hibernate-core:${hibernateVersion}",
 		hibernate_ehcache: "org.hibernate:hibernate-ehcache:${hibernateVersion}",
-		validation: 'org.hibernate:hibernate-validator:6.0.8.Final',
+		validation: [
+			'javax.validation:validation-api:2.0.1.Final',
+			'org.hibernate:hibernate-validator:6.0.8.Final'
+		],
 		aspectj: [
 			"org.aspectj:aspectjrt:${aspectjVersion}",
 			"org.aspectj:aspectjweaver:${aspectjVersion}"
