@@ -14,8 +14,13 @@ import java.sql.*;
  */
 
 
-public class SpringJdbcTemplateVideoDao extends JdbcDaoSupport implements
-		VideoDao {
+//TODO 
+//
+//Modify the class so that it extends the Spring JdbcDaoSupport class
+
+public class SpringJdbcTemplateVideoDao 
+		extends JdbcDaoSupport 
+		implements VideoDao {
 
 	private static final String SQL_VIDEO_QUERY = "select * from video_recordings where category = ?";
 	private static final String SQL_SINGLE_VIDEO_QUERY = "select * from video_recordings where recording_id=?";
