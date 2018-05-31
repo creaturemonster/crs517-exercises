@@ -99,7 +99,7 @@ public class EnquiryController{
 	
 	
 	@RequestMapping("/success")
-	public String succussView(){
+	public String successView(){
 		return "enquiry_confirmation";
 	}
 
