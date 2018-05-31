@@ -1,7 +1,7 @@
-import message.ConsoleRenderer;
-
-import org.springframework.context.support.AbstractApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import message.ConsoleRenderer;
 
 
 public class Driver {
@@ -19,7 +19,8 @@ public class Driver {
 		 */
 		
 		
-		AbstractApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+		ConfigurableApplicationContext context = 
+			new ClassPathXmlApplicationContext("applicationContext.xml");
 		
 		context.registerShutdownHook();
 		
@@ -28,7 +29,6 @@ public class Driver {
 		System.out.println("Welcome to the World of Spring.  Here is your message:");
 		
 		renderer.renderMessage();
-
 	}
 
 }
