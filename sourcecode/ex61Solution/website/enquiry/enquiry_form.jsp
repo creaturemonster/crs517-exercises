@@ -15,11 +15,8 @@
  		 <p>
     
       <!-- 
-      
-          TODO  Define a Spring <form> tag here with the commandName attribute set to "enquiry"
-      
+          TODO  Define a Spring <form> tag here with the modelAttribute attribute set to "enquiry"
        -->
-
 	     <form:form modelAttribute="enquiry">
     
     	   <table border="0" cellpadding="0">
