@@ -29,11 +29,10 @@ public class RainforestService  {
 		this.videoDao = videoDao;
 	}
 	
+	
 	/**
-	 *  Get a sorted list of video recording categories from the database.
+	 *  Get a list of video recording categories from the database.
 	 */
-	
-	
 	public List<String> getVideoCategories() {
 		
 		List<String> categories = null;
@@ -49,31 +48,27 @@ public class RainforestService  {
 	}
 
 	
+	// TODO
+	//
+	// Implement the getVideoRecordings(String theCategory) method, 
+	// following the Javadoc contract below.
+	// You should delegate the work to the VideoDao
+	// Your method should handle the DaoException returning an empty
+	// list if the exception is thrown
+
 	/**
 	 *  Get a sorted list of video recordings from the database for the given category. <br>
 	 *  The list is sorted by title.
 	 *
 	 *	@param theCategory the category
 	 *  @return a list of VideoRecording objects
-	 *	@see #getVideoRecordings(String theCategory, int sortBy)
+	 *  
+	 *	@see rain.Dao#SORT_BY_TITLE
 	 */
-	
-
-	// TODO
-	//
-	// Implement the getVideoRecordings(String theCategory) method
-	// you defined in the RainforestService interface.
-	// You should delegate the work to the VideoDao
-	// Your method should handle the DaoException returning an empty
-	// list if the exception is thrown
-
-
-	
-	
 	public List<VideoRecording> getVideoRecordings(String theCategory) {
 		List<VideoRecording> recordings = null;
 		try {
-			recordings = videoDao.getVideoRecordings(theCategory);
+			recordings = videoDao.getVideoRecordings(theCategory, Dao.SORT_BY_TITLE);
 		} catch (DaoException e) {
 			if(recordings == null){
 				recordings = new ArrayList<VideoRecording>();
@@ -90,11 +85,11 @@ public class RainforestService  {
 	 *  @param theCategory the category name
 	 *  @param sortBy the key to sort by
 	 *  @return a list of sorted <code>VideoRecording</code> objects
+	 *  
 	 *	@see rain.Dao#SORT_BY_TITLE
 	 *	@see rain.Dao#SORT_BY_PRICE
 	 *	@see rain.Dao#SORT_BY_STOCK_COUNT
 	 */
-	
 	public List<VideoRecording> getVideoRecordings(String theCategory,int sortBy){
 		List<VideoRecording> recordings = null;
 		try {
@@ -107,6 +102,7 @@ public class RainforestService  {
 		return recordings;
 	}
 
+	
 	/**
 	 *  Returns a video recording based on the id
 	 *
@@ -114,7 +110,6 @@ public class RainforestService  {
 	 *	@return a <code>VideoRecording</code> object for the given recording id
 	 * 	@see #getVideoRecording
 	 */
-	
 	public VideoRecording getVideoRecording(String recordingId) {
 		VideoRecording recording = null;
 		try {
@@ -127,11 +122,10 @@ public class RainforestService  {
 		return recording;
 	}
 
+	
 	/**
 	 *  Returns a video recording based on the id
-	 *
 	 */
-	
 	public VideoRecording getVideoRecording(int recordingId) {
 		VideoRecording recording = null;
 		try {
@@ -143,5 +137,4 @@ public class RainforestService  {
 		}
 		return recording;
 	}
-
 }
