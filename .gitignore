@@ -2,4 +2,6 @@ bin/
 build/
 classes/
 lib/
+libs/
 .gradle/
+*.jar
