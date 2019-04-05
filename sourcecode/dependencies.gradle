@@ -1,7 +1,7 @@
 ext {
-	springVersion = '5.0.4.RELEASE'
-	hibernateVersion = '5.2.15.Final'
-	aspectjVersion = '1.8.13'
+	springVersion = '5.1.6.RELEASE'
+	hibernateVersion = '5.4.2.Final'
+	aspectjVersion = '1.9.3'
 
 	libraries = [
 		spring_core: "org.springframework:spring-context:${springVersion}", 
@@ -9,36 +9,36 @@ ext {
 		spring_tx: "org.springframework:spring-tx:${springVersion}",
 		spring_mvc: [
 			"org.springframework:spring-webmvc:${springVersion}",
-			'com.fasterxml.jackson.core:jackson-databind:2.9.4'
+			'com.fasterxml.jackson.core:jackson-databind:2.9.8'
 		],
 		spring_orm: "org.springframework:spring-orm:${springVersion}",
 		hibernate: "org.hibernate:hibernate-core:${hibernateVersion}",
 		hibernate_ehcache: "org.hibernate:hibernate-ehcache:${hibernateVersion}",
 		validation: [
 			'javax.validation:validation-api:2.0.1.Final',
-			'org.hibernate:hibernate-validator:6.0.8.Final'
+			'org.hibernate:hibernate-validator:6.0.16.Final'
 		],
 		aspectj: [
 			"org.aspectj:aspectjrt:${aspectjVersion}",
 			"org.aspectj:aspectjweaver:${aspectjVersion}"
 		],
-		mail: 'com.sun.mail:javax.mail:1.6.1',
+		mail: 'com.sun.mail:javax.mail:1.6.2',
 		logging: 'log4j:log4j:1.2.17',
 		
 		// runtime
-		jdbc_driver: 'mysql:mysql-connector-java:6.0.6',
+		jdbc_driver: 'mysql:mysql-connector-java:8.0.15',
 		dbcp: 'commons-dbcp:commons-dbcp:1.4',
 		jaxb: [
-			'javax.xml.bind:jaxb-api:2.3.0',
-			'org.glassfish.jaxb:jaxb-runtime:2.3.0'
+			'javax.xml.bind:jaxb-api:2.3.1',
+			'org.glassfish.jaxb:jaxb-runtime:2.3.2'
 		],
 		activation: 'javax.activation:activation:1.1.1',
-		jstl: 'org.glassfish.web:javax.servlet.jsp.jstl:1.2.4',
+		jstl: 'org.glassfish.web:javax.servlet.jsp.jstl:1.2.5',
 		
 		// provided by Tomcat
 		servlet: [
-			'javax.servlet:javax.servlet-api:4.0.0',
-			'javax.servlet.jsp:javax.servlet.jsp-api:2.3.1'
+			'javax.servlet:javax.servlet-api:4.0.1',
+			'javax.servlet.jsp:javax.servlet.jsp-api:2.3.3'
 		],
 		
 	//	NOTE: also provided by Tomcat, but must be on runtime classpath for Do Now 21

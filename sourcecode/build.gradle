@@ -38,14 +38,14 @@ allprojects {
 	        docEncoding "UTF-8"
 	        charSet "UTF-8"
 	        linkSource true
-	        links("http://docs.oracle.com/javase/9/docs/api/");
+	        links("https://docs.oracle.com/en/java/javase/11/docs/api/index.html");
 	    }
 	}
 }
 
 subprojects {
-	sourceCompatibility = JavaVersion.VERSION_1_9
-	//targetCompatibility = JavaVersion.VERSION_1_9
+	sourceCompatibility = JavaVersion.VERSION_11
+	//targetCompatibility = JavaVersion.VERSION_11
 
 	dependencies {
 		compile libraries.logging
@@ -89,7 +89,7 @@ eclipse.wtp.facet {
 		whenMerged {
 			facets.each { f ->
 				if (f.name == 'jst.java') {
-					f.version = '9'
+					f.version = '11'
 				}
 				else if (f.name == 'jst.web') {
 					f.version = '4.0'
@@ -97,7 +97,7 @@ eclipse.wtp.facet {
 			}
 		}
 	}
-	//facet name: 'jst.java', version: '9'
+	//facet name: 'jst.java', version: '11'
 	//facet name: 'jst.web', version: '4.0'
 	//facet name: 'wst.jsdt.web', version: '1.0'
 }
