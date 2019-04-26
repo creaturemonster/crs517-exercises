@@ -19,7 +19,9 @@ import javax.persistence.InheritanceType;
 
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
-public abstract class Recording extends Product implements Comparable {
+public abstract class Recording
+	extends Product
+	implements Comparable<Recording> {
 
     //
     //  DATA MEMBERS
@@ -225,12 +227,9 @@ public abstract class Recording extends Product implements Comparable {
     /**
      *  Allow us to sort the recordings by title
      */
-    public int compareTo(Object object) {
-
-        Recording recording = (Recording) object;
-        String targetTitle = recording.getTitle();
-
-        return title.compareTo(targetTitle);
+    @Override
+    public int compareTo(Recording otherRec) {
+		return title.compareTo(otherRec.getTitle());
     }
 
 }

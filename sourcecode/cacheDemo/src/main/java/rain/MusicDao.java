@@ -1,10 +1,11 @@
 package rain;
 
 import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.Query;
+import org.hibernate.query.Query;
 
 import util.HibernateUtil;
 
@@ -64,7 +65,7 @@ public class MusicDao {
     	
   	
     	
-    	Duration duration = (Duration)session.get(Duration.class, id);
+    	Duration duration = session.get(Duration.class, id);
         transaction.commit();
         return duration;        
     }
@@ -86,10 +87,9 @@ public class MusicDao {
     	// Complete the statement that will load all Duration objects from the database
     	
     	
-    	Query query = session.createQuery("from Duration");
+    	Query<Duration> query = session.createQuery("from Duration", Duration.class);
     	
-        @SuppressWarnings("unchecked")
-		List<Duration> result = (List<Duration>) query.list();
+		List<Duration> result = query.list();
         
         transaction.commit();
         return result;        

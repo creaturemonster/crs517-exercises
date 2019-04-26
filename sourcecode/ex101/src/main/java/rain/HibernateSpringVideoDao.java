@@ -1,6 +1,6 @@
 package rain;
 
-import java.util.*;
+import java.util.List;
 
 import org.hibernate.SessionFactory;
 
@@ -60,8 +60,10 @@ public class HibernateSpringVideoDao  implements VideoDao {
 		//
 
 
-    	return sessionFactory.getCurrentSession().getNamedQuery("VideoRecording.byCategory").
-    							setParameter("theCategory", theCategory).list();
+    	return sessionFactory.getCurrentSession()
+    			.createNamedQuery("VideoRecording.byCategory", VideoRecording.class)
+    			.setParameter("theCategory", theCategory)
+    			.list();
 		
 	}
 
@@ -86,9 +88,10 @@ public class HibernateSpringVideoDao  implements VideoDao {
 		// Notice how we execute the Named Query with a named parameter using HQL
 		// and return the result
 
-		return (VideoRecording)sessionFactory.getCurrentSession().getNamedQuery("VideoRecording.Recording").
-									setParameter("theRecordingId", recordingId).uniqueResult();
-
+		return sessionFactory.getCurrentSession()
+				.createNamedQuery("VideoRecording.Recording", VideoRecording.class)
+				.setParameter("theRecordingId", recordingId)
+				.uniqueResult();
 	}
 
 

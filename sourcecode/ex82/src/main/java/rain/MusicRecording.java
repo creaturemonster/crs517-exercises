@@ -54,7 +54,8 @@ public class MusicRecording extends Recording {
     }
 
     public MusicRecording(String theTitle, double thePrice, String theCategory,
-            String theImageName, int theStockCount, String theArtist, String thePublisher, List theTracks) {
+            String theImageName, int theStockCount, String theArtist, String thePublisher, 
+            List<Track> theTracks) {
         super(theTitle, thePrice, theCategory, theImageName, theStockCount);
         artist = theArtist;
         publisher = thePublisher;

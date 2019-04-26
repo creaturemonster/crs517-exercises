@@ -3,7 +3,6 @@ package rain;
 import org.hibernate.*;
 import util.HibernateUtil;
 
-@SuppressWarnings(value={"unchecked"})
 
 public class Driver {
     public static void main(String[] args) {

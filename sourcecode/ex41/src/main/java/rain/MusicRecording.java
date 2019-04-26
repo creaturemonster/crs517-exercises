@@ -150,6 +150,7 @@ public class MusicRecording extends Recording {
 	 *  Iterates over the list of tracks and keeps a running
 	 *  total of each track's duration.
 	 */
+	@Override
 	public Duration getDuration() {
 
 		Track tempTrack;
@@ -169,22 +170,23 @@ public class MusicRecording extends Recording {
 		return new Duration(total);
 	}
 
+	
 	/**
 	 *  Returns the artist name and title of recording
 	 */
+	@Override
 	public String toString() {
 		return artist + "  -  " + getTitle();
 	}
 
+	
 	/**
 	 *  Allow us to sort the recordings by artist name
 	 */
-	public int compareTo(Object object) {
-
-		MusicRecording recording = (MusicRecording) object;
-		String targetArtist = recording.getArtist();
-
-		return artist.compareTo(targetArtist);
+    @Override
+    public int compareTo(Recording otherRec) {
+		return artist.compareTo(
+				((MusicRecording) otherRec).getArtist());
 	}
 
 }

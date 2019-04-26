@@ -77,9 +77,9 @@ public class MusicDao {
     	//
     	// Complete the statement that will load all Duration objects from the database
     	
-        Query query = session.createQuery(/* Your code here */ );
+        Query<Duration> query = session.createQuery(/* Your code here */ );
         
-        List result = query.list();
+        List<Duration> result = query.list();
         
         transaction.commit();
      

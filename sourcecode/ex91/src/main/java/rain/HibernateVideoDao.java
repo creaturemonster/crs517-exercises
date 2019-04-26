@@ -1,7 +1,11 @@
 package rain;
 
-import java.util.*;
-import org.hibernate.*;
+import java.util.List;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.query.Query;
+
 import util.HibernateUtil;
 
 
@@ -24,8 +28,8 @@ public class HibernateVideoDao implements VideoDao {
 
 	    	Transaction transaction = hibernateSession.beginTransaction();
 
-
-	    	Query query =  hibernateSession.createQuery("from rain.Category");
+	    	Query<Category> query = 
+	    		hibernateSession.createQuery("from rain.Category", Category.class);
 
 	    	List<Category> categories = query.list();
 
@@ -114,15 +118,16 @@ public class HibernateVideoDao implements VideoDao {
     	//
 
 
-    	Query query = hibernateSession.getNamedQuery("VideoRecording.Recording");
-
+    	Query<VideoRecording> query = 
+        		hibernateSession.createNamedQuery("VideoRecording.Recording", VideoRecording.class);
+        	
     	query.setParameter("theRecordingId", recordingId);
-
-    	VideoRecording video = (VideoRecording)query.uniqueResult();
+    	
+    	VideoRecording recording = query.uniqueResult();
 
     	transaction.commit();
 
-        return video;
+        return recording;
 
 
 	}

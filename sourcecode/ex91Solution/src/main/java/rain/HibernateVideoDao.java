@@ -1,7 +1,11 @@
 package rain;
 
-import java.util.*;
-import org.hibernate.*;
+import java.util.List;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.query.Query;
+
 import util.HibernateUtil;
 
 
@@ -12,8 +16,7 @@ import util.HibernateUtil;
  */
 
 
-public class HibernateVideoDao implements
-		VideoDao {
+public class HibernateVideoDao implements VideoDao {
 
 
 
@@ -24,10 +27,10 @@ public class HibernateVideoDao implements
 
 	    	Transaction transaction = hibernateSession.beginTransaction();
 	        
-	    	Query query = hibernateSession.createQuery("from rain.Category");
-	    	
-	    	@SuppressWarnings("unchecked")
-			List<Category> categories = (List<Category>) query.list();
+	    	Query<Category> query = 
+		    	hibernateSession.createQuery("from rain.Category", Category.class);
+
+	    	List<Category> categories = query.list();
 	    	
 	    	transaction.commit();
 	    	
@@ -61,7 +64,8 @@ public class HibernateVideoDao implements
     	// HINT:  Use the named query: "VideoRecording.byCategory"
     	
     	
-    	Query query = hibernateSession.getNamedQuery("VideoRecording.byCategory");
+    	Query<VideoRecording> query = 
+    		hibernateSession.createNamedQuery("VideoRecording.byCategory", VideoRecording.class);
     	
     	// TODO
     	//
@@ -75,8 +79,7 @@ public class HibernateVideoDao implements
     	//
  
     	
-    	@SuppressWarnings("unchecked")
-		List<VideoRecording> videos = (List<VideoRecording>) query.list();
+		List<VideoRecording> videos = query.list();
     	
     	transaction.commit();
     	
@@ -115,11 +118,12 @@ public class HibernateVideoDao implements
     	// In particular, take note of how we return the single object
     	//
 
-    	Query query = hibernateSession.getNamedQuery("VideoRecording.Recording");
+    	Query<VideoRecording> query = 
+    		hibernateSession.createNamedQuery("VideoRecording.Recording", VideoRecording.class);
     	
     	query.setParameter("theRecordingId", recordingId);
     	
-    	VideoRecording recording = (VideoRecording) query.uniqueResult();
+    	VideoRecording recording = query.uniqueResult();
     	
     	transaction.commit();
     	

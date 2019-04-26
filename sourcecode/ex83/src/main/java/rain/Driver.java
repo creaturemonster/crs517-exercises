@@ -5,7 +5,6 @@ import util.HibernateUtil;
 import java.util.List;
 import java.util.ArrayList;
 
-@SuppressWarnings(value={"unchecked"})
 
 public class Driver {
 
