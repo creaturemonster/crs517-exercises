@@ -44,7 +44,9 @@ allprojects {
 }
 
 subprojects {
-	sourceCompatibility = JavaVersion.VERSION_11
+	// TODO: change back to ver 11 once Eclipse/STS fix problems with Java 11
+	// see: https://bugs.eclipse.org/bugs/show_bug.cgi?id=545627
+	sourceCompatibility = JavaVersion.VERSION_1_9
 	//targetCompatibility = JavaVersion.VERSION_11
 
 	dependencies {
