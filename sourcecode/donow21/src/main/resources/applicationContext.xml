@@ -5,11 +5,11 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
 	xmlns:context="http://www.springframework.org/schema/context">
 
-<!-- 
-  	TODO 
-  
-   Configure the factory so that it will scan the Java package
-   named message for annotations
--->
-
-	</beans>
+	<!-- 
+	  	TODO 
+	  
+	   Configure the factory so that it will scan the Java package
+	   named message for annotations
+	-->
+	
+</beans>
