@@ -2,7 +2,9 @@ package rain;
 
 import java.util.List;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 
 
 
@@ -32,15 +34,14 @@ public class HibernateSpringVideoDao  implements VideoDao {
 
 
 
+	@SuppressWarnings("unchecked")
 	public List<Category> getVideoCategories() throws DAOException {
 
 		// TODO
 		//
 		// Execute the HQL "from rain.Category" and return the result
 		//
-	
-
-		return null;
+	   return (List<Category>) sessionFactory.getCurrentSession().createQuery("from rain.Category").list();
 	    	
 	}
 
