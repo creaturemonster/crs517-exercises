@@ -24,9 +24,6 @@ import javax.persistence.Transient;
 
 /* TODO 
 	Complete the definitions of the two named Queries below.
-
-
-
 	
    The first  query should select all the VideoRecording objects
    whose category matches that value that is set by a named parameter.
@@ -53,10 +50,12 @@ import javax.persistence.Transient;
 
 */
 
-
-
 @Entity
 @Table(name="video_recordings")
+@NamedQueries({
+	@NamedQuery(name="VideoRecording.byCategory", query="from rain.VideoRecording where category=:theCategory"), 
+	@NamedQuery(name="VideoRecording.Recording", query="from rain.VideoRecording where recordingId=:theRecordingId")
+})
 public class VideoRecording extends Product{
 
 	//

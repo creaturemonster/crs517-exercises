@@ -51,7 +51,7 @@ public class HibernateVideoDao implements VideoDao {
 			int sortBy) throws DAOException {
 
         Session hibernateSession = HibernateUtil.getSessionFactory().getCurrentSession();
-
+        //Session session=hibernateSession.getSession();
     	Transaction transaction = hibernateSession.beginTransaction();
 
     	//  TODO
@@ -62,20 +62,20 @@ public class HibernateVideoDao implements VideoDao {
     	// VideoRecording objects for a specified category
     	//
     	// HINT:  Use the named query: "VideoRecording.byCategory"
-
-
+    	Query<VideoRecording> query=hibernateSession.createNamedQuery("VideoRecording.byCategory", VideoRecording.class);
+    	
 
     	// TODO
     	//
     	// On the query, set the named parameter, "theCategory"
-
-
+    	query.setParameter("theCategory", theCategory);
+    	
 
        	// TODO
     	//
     	// Execute the named query
     	//
-
+    	List<VideoRecording> recordings=query.list();
 
 
 
@@ -87,7 +87,7 @@ public class HibernateVideoDao implements VideoDao {
     	// Modify the statement below to return the List of VideoRecordings your
     	// query returned
 
-        return null;
+        return recordings;
 	}
 
 
