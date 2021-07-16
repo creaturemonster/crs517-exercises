@@ -14,6 +14,7 @@ public class Driver {
 		 *  Note the call to the registerShutdownHook below
 		 *  What is the purpose of this call ?
 		 *  
+		 *  The purpose of the call is to print out "In tidyUp method of ConsoleRenderer".
 		 *  Run the code and then comment out the call and
 		 *  re-run the code to get a hint of what it does
 		 */

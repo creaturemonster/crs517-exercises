@@ -15,7 +15,7 @@
 		and processing annotated controllers.
 		  
 	 -->
-
+	
     	
 	
 	<context:component-scan base-package="rain"/>

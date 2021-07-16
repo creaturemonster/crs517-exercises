@@ -28,7 +28,8 @@ import javax.persistence.InheritanceType;
  * 
  */
 
-
+@Entity
+@Inheritance(strategy=InheritanceType.JOINED)
 public abstract class Recording
 	extends Product
 	implements Comparable<Recording> {
@@ -47,7 +48,8 @@ public abstract class Recording
 	 * 
 	 * 
 	 */
-	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
     private int id;
 	
 	

@@ -12,7 +12,7 @@
 		Hint: Use the jee XML namespace element jndi-lookup
 		
 	-->
-
+	<jee:jndi-lookup id="dataSource" jndi-name="java:comp/env/jdbc/RainForestDB"></jee:jndi-lookup>
 	
 	
 	<!-- TODO
@@ -21,9 +21,8 @@
 		Set the DataSource on the DAO
 	-->
 	
-	<bean>
-		<property>
-		</property>
+	<bean id="videoDao" class="rain.SpringJdbcTemplateVideoDao">
+		<property name="dataSource" ref="dataSource" />
 	</bean>
 	
 	
@@ -34,8 +33,8 @@
 		Set the videoDao property on this bean
 	-->	
 
-	<bean>
-		<property>
+	<bean id="rainforestService" class="rain.RainforestService">
+		<property name="videoDao" ref="videoDao">
 		</property>
 	</bean>
 		

@@ -23,7 +23,8 @@ public interface VideoDao  {
 	// parameters: String the category of video recordings to get
 	// return type: List<VideoRecording>
 	// throws DaoException
-
+	public List<VideoRecording> getVideoRecordings(String category) throws DaoException;
+	
 	
 
 
@@ -35,7 +36,7 @@ public interface VideoDao  {
 	// parameters: String the recording Id
 	// return type: VideoRecording	
 	// throws DaoException
-
+	public VideoRecording getVideoRecording(String recordingId) throws DaoException;
 	
 	
 	

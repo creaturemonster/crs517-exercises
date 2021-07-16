@@ -11,7 +11,7 @@
 	
 	
 	<!-- TODO set the attribute class to the name of your message provider implementation -->
-	
-	<bean id="messageProvider" class="xxxxx TODO your class name here xxxxx"/>
+	 
+	<bean id="messageProvider" class="MyMessageProvider"/>
 
 </beans>

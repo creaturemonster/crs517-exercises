@@ -7,7 +7,7 @@
 //
 // Modify the baseLink to be the contextPath + "/rainforest/videos?video_category="
 
-	String baseLink = contextPath + "/VideoCatalogServlet?video_category=";
+	String baseLink = contextPath + "/rainforest/videos?video_category=";
 
 
 	RainforestService rainforestService  = (RainforestService) application.getAttribute(Constants.RAINFOREST_SERVICE_KEY);
@@ -50,28 +50,13 @@
             }
 %>
 	</tr>
+	<c:forEach var="tempRecording" items="${video_category}">
 	<tr>
-		<td>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-			<br>
-		</td>
+		<td>${tempRecording.Title}</td>
+		<td>${tempRecording.Director}</td>
+		<td>${tempRecording.Stock}</td>
 	</tr>
-
+	</c:forEach>
 
 </table>
 </body>

@@ -3,9 +3,14 @@ package rain;
 
 import java.util.*;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.context.annotation.Scope;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.TransactionTemplate;
+
 
 public class RainforestService {
 
@@ -38,6 +43,7 @@ public class RainforestService {
 	 * Updates prices of music recordings, reducing them by the specified percentage
 	 *
 	 */
+	@Transactional(propagation=Propagation.REQUIRED)
 	public void updateMusicRecordingPrices(double percent){
 		musicDao.updatePrices(percent);
 	}
@@ -48,6 +54,7 @@ public class RainforestService {
 	 * Updates prices of video recordings, reducing them by the specified percentage
 	 *
 	 */
+	@Transactional(propagation=Propagation.REQUIRED)
 	public void updateVideoRecordingPrices(double percent) throws DAOException{
 		videoDao.updatePrices(percent);
 	}
@@ -57,7 +64,9 @@ public class RainforestService {
 	 *
 	 * Updates prices of both the music and video recordings, reducing them by the specified percentage
 	 *
+	 *
 	 */
+	@Transactional(propagation=Propagation.REQUIRED)
 	public void updateAllPrices(double percent) {
 		updateMusicRecordingPrices(percent);
 		updateVideoRecordingPrices(percent);

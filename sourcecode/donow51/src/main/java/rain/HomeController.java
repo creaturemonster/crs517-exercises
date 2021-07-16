@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 
 @Controller
@@ -25,8 +26,8 @@ public class HomeController {
 	 * Where value1 is a String and value2 is an int
 	 * 
 	 */
-	
-	public String urlParameters(/* TODO  Define parameters to match your mapping here*/ , ModelMap model ){
+	@RequestMapping(value="{value1}/{value2}", method=RequestMethod.GET)
+	public String urlParameters(@PathVariable String value1, @PathVariable int value2 , ModelMap model ){
 		model.addAttribute("value1", value1);
 		model.addAttribute("value2", value2);
 		return "url_parameters";

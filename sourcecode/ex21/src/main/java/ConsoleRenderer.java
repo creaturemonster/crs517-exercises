@@ -20,7 +20,9 @@ public class ConsoleRenderer {
 	// Your method should print a message obtained from the MessageProvider
 	// to the system console.
 	
-	
+	public  void renderMessage() {
+		System.out.println(messageProvider.getMessage());
+	}
 
 	
 	

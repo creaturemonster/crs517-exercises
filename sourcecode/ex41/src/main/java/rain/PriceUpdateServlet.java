@@ -6,6 +6,8 @@ import java.io.*;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.*;
 
 import java.text.*;
@@ -66,15 +68,15 @@ public class PriceUpdateServlet extends HttpServlet {
 			On the next line, invoke the method on your RainforestService instance that will update the prices of Video recordings, 
 			reducing them by the specified percentage
 			*/
-			
-			
+			rainforestService.updateMusicRecordingPrices(percent);
+			rainforestService.updateVideoRecordingPrices(percent);
 			// TODO VERSION 2
 			/*
 			First, comment out the 2 lines you just wrote above in VERSION 1.
 			Next, invoke the single method on your RainforestService instance that will update the prices of both the Music and Video recordings, 
 			reducing them by the specified percentage
 			*/
-
+			rainforestService.updateAllPrices(percent);
 			
 		}catch(DAOException e){
 			errorMessage = e.getMessage();

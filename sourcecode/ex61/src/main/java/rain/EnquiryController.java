@@ -1,12 +1,15 @@
 package rain;
 
 
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 /*
@@ -16,7 +19,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
  *
  *  Configure the class to process the url "/enquiry"
 */
-
+@Controller
+@RequestMapping("/enquiry")
 public class EnquiryController {
 
 	/*
@@ -34,6 +38,12 @@ public class EnquiryController {
 	 * 
 	 *  The method should return the view name "enquiry_form"
 	 */
+	@RequestMapping(method=RequestMethod.GET)
+	public String setupForm(ModelMap model) {
+		EnquiryCommand enquiry=new EnquiryCommand();
+		model.addAttribute("enquiry", enquiry);
+		return "enquiry_form";
+	}
 	
 
 	
@@ -66,8 +76,16 @@ public class EnquiryController {
 	 *    
 	 *   The controller method to which the redirect is targeted is below 
 	 */
-	
-	
+	@RequestMapping(method=RequestMethod.POST)
+	public String onSubmit(@ModelAttribute("enquiry") @Valid EnquiryCommand enquiry,BindingResult result, RedirectAttributes redirectAttributes )
+	{
+		if(result.hasErrors()) {
+			return "enquiry_form";
+		}
+		
+		redirectAttributes.addFlashAttribute("enquiry", enquiry);
+		return "redirect:enquiry/success";
+	}
 
 	
 	@RequestMapping("/success")

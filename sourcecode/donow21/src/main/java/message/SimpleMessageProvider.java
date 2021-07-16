@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
  *  Annotate the SimpleMessageProvider class
  *  as a Spring Component with the name messageProvider
  */
-
+@Component("messageProvider")
 public class SimpleMessageProvider implements MessageProvider{
 	public String getMessage(){
 		return "Hello World";

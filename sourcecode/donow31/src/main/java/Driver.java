@@ -17,18 +17,20 @@ public class Driver {
 		// TODO
 		//
 		// Create a JdbcTemplate using the dataSource above
-		
+		JdbcTemplate template=new JdbcTemplate(dataSource);
 		
 		
 		// TODO
 		//
 		// Execute the SQL statement "select count(*) from music_recordings"
-		
+		String query="select count(*) from music_recordings";
 
 		// TODO
 		//
 		// Display the number of recordings to the console
-
+		String title=template.queryForObject(query, String.class);
+		System.out.println(title);
+		//50 recordings
 	}
 
 }

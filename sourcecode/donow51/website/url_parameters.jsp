@@ -11,8 +11,8 @@
 <h3>The Following URL parameters were received</h3>
 
 <ul>
-  <li>Value 1:  <!--  TODO Display model attribute value1 here --></li>
-  <li>Value 2:  <!--  TODO Display model attribute value2 here --></li>
+  <li>Value 1: ${value1}</li>
+  <li>Value 2: ${value2}</li>
 </ul>
 </body>
 </html>

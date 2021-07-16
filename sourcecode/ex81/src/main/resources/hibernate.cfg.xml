@@ -37,7 +37,8 @@
 				HINT: The element for mapping is <mapping/> with the attribute
 				       "class"
 			--> 
-
+			<mapping class="rain.Duration" />
+			<mapping  class="rain.Track" />
 
 					
         </session-factory>

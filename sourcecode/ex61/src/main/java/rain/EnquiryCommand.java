@@ -2,6 +2,10 @@ package rain;
 
 import java.io.Serializable;
 
+import javax.validation.constraints.NotEmpty;
+
+
+
 /*
  * 
  * TODO 
@@ -22,4 +26,42 @@ import java.io.Serializable;
  * message to display in the event of validation failure 
  * 
  */
-
+public class EnquiryCommand implements Serializable{
+	
+	@NotEmpty(message="Name must be provided")
+	private String name;
+	
+	@NotEmpty(message="Email must be provided")
+	private String email;
+	
+	private String telephone;
+	
+	@NotEmpty(message="EnquiryDetails must be provided")
+	private String enquiryDetails;
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getTelephone() {
+		return telephone;
+	}
+	public void setTelephone(String telephone) {
+		this.telephone = telephone;
+	}
+	public String getEnquiryDetails() {
+		return enquiryDetails;
+	}
+	public void setEnquiryDetails(String enquiryDetails) {
+		this.enquiryDetails = enquiryDetails;
+	}
+	
+}

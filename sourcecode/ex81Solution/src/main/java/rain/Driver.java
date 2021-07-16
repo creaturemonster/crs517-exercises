@@ -38,7 +38,7 @@ public class Driver {
     	// J. White and duration defined by the duration object created above
         
         
-        Track track = new Track("Seven Nation Army", "J. White", duration);        
+        Track track = new Track("Seven Nation Army", "J.White", duration);        
 
         
         

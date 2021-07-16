@@ -1,6 +1,8 @@
 package rain;
 
 import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 
 /*
@@ -11,8 +13,7 @@ import javax.persistence.Embeddable;
  * 
  */
 
-
-
+@Embeddable
 public class Duration {
 
    

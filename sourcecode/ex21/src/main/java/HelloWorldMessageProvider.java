@@ -12,4 +12,14 @@
 //  Have your method return the String "Hello World"
 
 
+public class HelloWorldMessageProvider implements MessageProvider{
+	//private String message;
 
+	@Override
+	public String getMessage() {
+		// TODO Auto-generated method stub
+		return "Hello World";
+	}
+	
+	
+}

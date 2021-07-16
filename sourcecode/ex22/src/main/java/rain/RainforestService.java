@@ -7,13 +7,25 @@ import java.util.*;
 //
 // Complete the definition of the RainforestService class
 
-public class ... {
+public class RainforestService {
 
 // TODO
 //
 // Define a private data member that is a reference to a VideoDao
 // This will be set by the Spring JavaBean container
 // Provide a public setter method for the VideoDao data member
+	private VideoDao videoDao;
+	
+
+	public VideoDao getVideoDao() {
+		return videoDao;
+	}
+
+
+
+	public void setVideoDao(VideoDao videoDao) {
+		this.videoDao = videoDao;
+	}
 
 
 
@@ -43,6 +55,10 @@ public class ... {
 	// You should delegate the work to the VideoDao
 	// Your method should handle the DaoException returning an empty
 	// list if the exception is thrown
+	public List<VideoRecording> getVideoRecordings(String theCategory) throws DaoException{
+		List<VideoRecording> recordings=null;
+		return recordings;
+	}
 
 	/**
 	 *  Get a sorted list of video recordings from the database for the given category. <br>
@@ -53,7 +69,7 @@ public class ... {
 	 *  
 	 *	@see rain.Dao#SORT_BY_TITLE
 	 */
-
+	
 	
 	
 	

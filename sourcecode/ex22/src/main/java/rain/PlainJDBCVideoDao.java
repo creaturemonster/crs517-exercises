@@ -22,7 +22,7 @@ import javax.sql.DataSource;
 // **************************************************************
 
 
-public class PlainJDBCVideoDao extends Dao{
+public class PlainJDBCVideoDao extends Dao implements VideoDao{
 
 	public PlainJDBCVideoDao() {
 		DataSource dataSource = null;
@@ -202,5 +202,6 @@ public class PlainJDBCVideoDao extends Dao{
 
 		return tempRecording;
 	}
+
 
 }

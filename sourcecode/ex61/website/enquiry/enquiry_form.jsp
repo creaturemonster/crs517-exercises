@@ -17,12 +17,12 @@
       <!-- 
           TODO  Define a Spring <form> tag here with the modelAttribute attribute set to "enquiry"
        -->
-
+      <form:form modelAttribute="enquiry">
     
     	   <table border="0" cellpadding="0">
             <tr>                                            
               <td><label for="name">* Contact name</label>  
-              
+              		<form:errors path="name" cssClass="validationErrors"/>
               <!--  TODO  Define a Spring form errors tag here with path="name"-->
               
              </td>
@@ -31,7 +31,7 @@
               <td>
 			
 			<!--  TODO Define a Spring form input tag here with a path attribute of "name" -->     
-
+				<form:input path="name" size="45" />
              &nbsp;</td>
             </tr>
          

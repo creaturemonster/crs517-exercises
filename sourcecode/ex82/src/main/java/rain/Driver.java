@@ -19,7 +19,7 @@ public class Driver {
         // TODO
         //
         // Save the MusicRecording
-
+        session.save(musicRecording);
 
 
 
@@ -27,30 +27,30 @@ public class Driver {
         //
         // Complete the transaction
         // 
-        
+        transaction.commit();
         
     	// TODO
     	//
     	// Retrieve the ID from the MusicRecording
     	// This will be used to read the MusicRecording later
-
+        int id=musicRecording.getId();
         
         
         //
         // Display the MusicRecording to the console
-
+        System.out.println(musicRecording);
 
 
         // TODO
         //
         // Set the MusicRecording reference to null
         //
-
+        musicRecording=null;
 
         // TODO
         // Read the MusicRecording from the database and display it
         // to the console
-
+        System.out.println(musicRecording);
 
 
 

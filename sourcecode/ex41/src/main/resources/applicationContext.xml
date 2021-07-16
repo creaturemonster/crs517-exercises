@@ -28,7 +28,8 @@
          <property name="dataSource" ref="dataSource"/>
 	</bean>
 	
-    <tx:advice id="txAdvice" transaction-manager="transactionManager">
+	
+     <tx:advice id="txAdvice" transaction-manager="transactionManager">
 
       <!-- 
          TODO
@@ -39,11 +40,16 @@
          b. For any method whose name begins with update, set the propagation to REQUIRED
       
        -->
-
+		<tx:attributes> 
+			<tx:method name="reset" propagation="REQUIRED" rollback-for="RainDataException" />
+			<tx:method name="update" propagation="REQUIRED" rollback-for="RainDataException" />		
+		</tx:attributes>
     </tx:advice>
 	
 	<aop:config>
 	  <aop:pointcut id="rainforestServicePointCut" expression="bean(rainforestService)"/>
 	  <aop:advisor advice-ref="txAdvice" pointcut-ref="rainforestServicePointCut"/>
 	</aop:config>
+	
+	
 </beans>

@@ -37,7 +37,9 @@
 				   Define the mapping resource for the Duration class
 				   
 			   -->
-			
+			<mapping class="rain.Driver" />
+			<mapping class="rain.MusicDao" />
+			<mapping class="rain.Duration" />
 
 	   </session-factory>
 

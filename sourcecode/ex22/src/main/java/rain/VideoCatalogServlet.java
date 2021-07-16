@@ -55,7 +55,12 @@ public class VideoCatalogServlet extends HttpServlet {
 		String sortByString = request.getParameter("sort_by");
 
 		if (sortByString == null) {
-			theList = rainforestService.getVideoRecordings(category);
+			try {
+				theList = rainforestService.getVideoRecordings(category);
+			} catch (DaoException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		else {
 			try{
@@ -67,7 +72,12 @@ public class VideoCatalogServlet extends HttpServlet {
 					exc.printStackTrace();
 
 					// just give them the basic list
-					theList = rainforestService.getVideoRecordings(category);
+					try {
+						theList = rainforestService.getVideoRecordings(category);
+					} catch (DaoException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 			}
 		}
 

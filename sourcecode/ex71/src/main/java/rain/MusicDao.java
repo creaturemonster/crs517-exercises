@@ -28,19 +28,20 @@ public class MusicDao {
     	// TODO
     	//
     	// Obtain a Transaction from the current hibernate Session
-    
+    	Session session=sessionFactory.getCurrentSession();
     	
-    	
+    	Transaction transaction=session.beginTransaction();    	
     	
     	// TODO
     	//
     	// Save the duration object
-    	
+    	session.save(duration);
     	
     	
     	// TODO
     	//
     	// Commit the save operation
+    	transaction.commit();
     	
     }
 
@@ -59,8 +60,8 @@ public class MusicDao {
     	//
     	// Get the duration object that has the id defined by the method parameter
     	
-    	Duration duration = /* Your code here */ ;
-    	
+    	Duration duration = (Duration)session.load(Duration.class, id);
+   
         transaction.commit();
         return duration;        
     }
@@ -77,7 +78,7 @@ public class MusicDao {
     	//
     	// Complete the statement that will load all Duration objects from the database
     	
-        Query<Duration> query = session.createQuery(/* Your code here */ );
+        Query<Duration> query = session.createQuery("from Duration", Duration.class);
         
         List<Duration> result = query.list();
         

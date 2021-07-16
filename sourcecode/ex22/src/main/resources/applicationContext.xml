@@ -8,8 +8,9 @@
 		 Set the class attribute to your VideoDao implementation class
 		 Remember that the class is in the package rain
 	-->
-
-	<bean > 
+	
+	<bean id="rainforestService" class="rain.RainforestService">
+		<property name="videoDao" ref="videoDao"></property>
 	</bean>
 		
 		
@@ -19,9 +20,8 @@
 		 videoDao property
 	-->
 
-	<bean>
-		<property /> 
-	</bean>
+	<bean id="videoDao" class="rain.PlainJDBCVideoDao"/> 
+		
 	
 		
 </beans>

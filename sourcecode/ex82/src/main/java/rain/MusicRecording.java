@@ -18,7 +18,7 @@ import javax.persistence.Transient;
 
 
 
-
+@Entity
 public class MusicRecording extends Recording {
 
     /*

@@ -37,7 +37,8 @@
 				
 				
 				--> 
-
+				<mapping class="rain.MusicRecording" />
+				<mapping class="rain.Recording" />
 
         </session-factory>
 

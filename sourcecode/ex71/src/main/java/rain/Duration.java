@@ -1,5 +1,13 @@
 package rain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+
+
+
 
 /*
  * 
@@ -10,7 +18,7 @@ package rain;
  * 
  */
 
-
+@Entity
 public class Duration {
 
     /**
@@ -26,9 +34,9 @@ public class Duration {
 	 * Mark the generation strategy as auto
 	 * 
 	 */
-	
-    protected int id;
-   
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+    protected int id; 
     /**
      *  The number of hours
      */

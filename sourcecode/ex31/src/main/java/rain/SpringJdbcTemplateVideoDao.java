@@ -9,6 +9,9 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
 
 
@@ -26,7 +29,7 @@ import org.springframework.jdbc.core.support.JdbcDaoSupport;
 
 
 
-public class SpringJdbcTemplateVideoDao   implements VideoDao {
+public class SpringJdbcTemplateVideoDao  extends JdbcDaoSupport implements VideoDao {
 
 	
 	/**
@@ -67,7 +70,27 @@ public class SpringJdbcTemplateVideoDao   implements VideoDao {
     
 	// Invoke the queryForList() method on the inherited Spring JdbcTemplate instance to execute your query
 	
-	
+	public List<String> getVideoCategories(List<String> categories) throws DaoException{
+		return this.getJdbcTemplate().queryForList(SQL_CATEGORY_QUERY, String.class);
+	}
+private static final RowMapper<VideoRecording> videoMapper = new RowMapper<VideoRecording>() {
+		
+		public VideoRecording mapRow(ResultSet rs, int rowNum) throws SQLException{
+			VideoRecording recording = new VideoRecording();
+			recording.setId(rs.getInt("recording_id"));
+			recording.setDirector(rs.getString("director"));
+			recording.setTitle(rs.getString("title"));
+			recording.setCategory(rs.getString("category"));
+			recording.setImageName(rs.getString("image_name"));
+			recording.setDuration(new Duration(rs.getInt("duration")));
+			recording.setRating(rs.getString("rating"));
+			recording.setYearReleased(rs.getInt("year_released"));
+			recording.setPrice(rs.getDouble("price"));
+			recording.setStockCount(rs.getInt("stock_count"));
+			recording.setActors(null);
+			return recording;
+		}
+	};
 	/**
 	 *  Get a sorted list of video recordings from the database for the given category. <br>
 	 *  The list is sorted by title.
@@ -95,57 +118,47 @@ public class SpringJdbcTemplateVideoDao   implements VideoDao {
 	 */
 	public List<VideoRecording> getVideoRecordings(String theCategory, int sortBy)
 		throws DaoException {
-
-		List<VideoRecording> theList = new ArrayList<VideoRecording>();
-
-		// setup the base SQL query
-		String videoSql =
-			"SELECT recording_id, director, title, category, image_name, duration "
-			+ ", rating, year_released, price, stock_count "
-			+ "FROM Video_Recordings";
-
-		// setup the where clause for the category
-		if (!theCategory.equalsIgnoreCase("all")) {
-			videoSql += " WHERE category LIKE '" + theCategory + "%'";
-		}
-
-		// determine the field to sort on
-		String field = null;
-		switch (sortBy) {
-			case SORT_BY_TITLE :
-				field = "title";
-				break;
-			case SORT_BY_PRICE :
-				field = "price";
-				break;
-			case SORT_BY_STOCK_COUNT :
-				field = "stock_count";
-				break;
-			default :
-				field = "title";
-		}
-		videoSql += " ORDER BY " + field;
-
+		String orderString=null;
 		
-		// get a connection from the pool
-		// create a statement
-		// execute the query
-		try (Connection tempConn = getDataSource().getConnection();
-				Statement myStmt = tempConn.createStatement();
-				ResultSet myRs = myStmt.executeQuery(videoSql);) {
-
-			// build a list based on the query
-			while (myRs.next()) {
-				VideoRecording tempRecording = new VideoRecording(myRs);
-				theList.add(tempRecording);
-			}
+		switch(sortBy) {
+			case VideoDao.SORT_BY_PRICE:
+				orderString=" order by price";
+				break;
+			case VideoDao.SORT_BY_STOCK_COUNT:
+				orderString=" order by stock_count";
+				break;
+			default:
+				orderString=" order by title";
 		}
-		catch (SQLException e) {
-			logError(e);
-			throw new DaoException(e);
-		}
-		
-		return theList;
+		 return this.getJdbcTemplate().query(SQL_VIDEO_QUERY+ orderString, videoMapper, theCategory);
+		/*
+		 * List<VideoRecording> theList = new ArrayList<VideoRecording>();
+		 * 
+		 * // setup the base SQL query String videoSql =
+		 * "SELECT recording_id, director, title, category, image_name, duration " +
+		 * ", rating, year_released, price, stock_count " + "FROM Video_Recordings";
+		 * 
+		 * // setup the where clause for the category if
+		 * (!theCategory.equalsIgnoreCase("all")) { videoSql += " WHERE category LIKE '"
+		 * + theCategory + "%'"; }
+		 * 
+		 * // determine the field to sort on String field = null; switch (sortBy) { case
+		 * SORT_BY_TITLE : field = "title"; break; case SORT_BY_PRICE : field = "price";
+		 * break; case SORT_BY_STOCK_COUNT : field = "stock_count"; break; default :
+		 * field = "title"; } videoSql += " ORDER BY " + field;
+		 * 
+		 * 
+		 * // get a connection from the pool // create a statement // execute the query
+		 * try (Connection tempConn = getDataSource().getConnection(); Statement myStmt
+		 * = tempConn.createStatement(); ResultSet myRs =
+		 * myStmt.executeQuery(videoSql);) {
+		 * 
+		 * // build a list based on the query while (myRs.next()) { VideoRecording
+		 * tempRecording = new VideoRecording(myRs); theList.add(tempRecording); } }
+		 * catch (SQLException e) { logError(e); throw new DaoException(e); }
+		 * 
+		 * return theList;
+		 */
 	}
 
 	/**
@@ -170,21 +183,25 @@ public class SpringJdbcTemplateVideoDao   implements VideoDao {
 	 */
 	public VideoRecording getVideoRecording(int recordingId)
 		throws DaoException {
-
+		VideoRecording recording=new VideoRecording();
+		
 		// get a connection from the pool
 		// create a statement
 		// execute the query
 		try (Connection tempConn = getDataSource().getConnection();
 				Statement myStmt = tempConn.createStatement();
+				
 				ResultSet myRs = myStmt.executeQuery(
 					"SELECT recording_id, director, title, category, image_name "
 					+ ", duration, rating, year_released, price, stock_count "
 					+ "FROM Video_Recordings "
 					+ "WHERE recording_id=" + recordingId)) {
-
-			return (myRs.next()) ?
-				new VideoRecording(myRs) :
-					null;
+			//recording.setId(myRs.getInt(recordingId));
+			//recording.setTitle(myRs.getString("title"));
+			//return recording;
+			
+			  return (myRs.next()) ? new VideoRecording(myRs) : null;
+			 
 		} catch (SQLException e) {
 			logError(e);
 			throw new DaoException(e);
@@ -215,6 +232,10 @@ public class SpringJdbcTemplateVideoDao   implements VideoDao {
 	protected void logError(Throwable thrown) {
 		logError("", thrown);
 	}
-	
+
+	@Override
+	public List<String> getVideoCategories() throws DaoException {
+		return this.getJdbcTemplate().queryForList(SQL_CATEGORY_QUERY, String.class);
+	}
 	
 }

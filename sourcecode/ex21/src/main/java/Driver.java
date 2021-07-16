@@ -19,11 +19,16 @@ public class Driver {
 		System.out.println("Welcome to the World of Spring.  Here is your message:");
 		
 		// Display message
+		renderer.renderMessage();
+		//HelloWorldMessageProvider provider=new HelloWorldMessageProvider();
+		//MyMessageProvider provider1=new MyMessageProvider();
 		
 		//TODO call renderMessage on the renderer
+		//renderer.setMessageProvider(provider);
+		//renderer.getMessageProvider();
 		
-
-
+		//renderer.setMessageProvider(provider1);
+		//renderer.getMessageProvider();
 		
 	}
 

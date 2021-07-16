@@ -19,7 +19,9 @@ import org.springframework.stereotype.Component;
  *  
  *  3. Annotate the Component to be created on factory startup (not lazy loaded)
  */
-
+@Component("messageRenderer")
+@Scope("singleton")
+@Lazy(false)
 public class ConsoleRenderer {
 
 		private MessageProvider messageProvider = null;
@@ -33,7 +35,7 @@ public class ConsoleRenderer {
 		 */
 
 		
-	
+		@PostConstruct
 		public void init(){
 			
 			System.out.println("In init method of ConsoleRenderer");
@@ -46,7 +48,7 @@ public class ConsoleRenderer {
 		 *  as a method to be called just before the Spring factory closes 
 		 */
 
-		
+		@PreDestroy
 		public void tidyUp(){
 			
 			System.out.println("In tidyUp method of ConsoleRenderer");
@@ -64,7 +66,7 @@ public class ConsoleRenderer {
 		 *  is messageProvider
 		 */
 
-		
+		@Resource(name="messageProvider")
 		public void setMessageProvider(MessageProvider messageProvider){
 			this.messageProvider = messageProvider;
 		}

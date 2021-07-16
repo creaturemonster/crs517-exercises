@@ -20,7 +20,9 @@
 		Remember to also include the configuration required to enable validation
 		  
 	 -->
-
+	<mvc:annotation-driven />
+	
+	<context:component-scan base-package="rain" />
 
 	
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

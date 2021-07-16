@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Transient;
 
 
 /*
@@ -17,7 +16,7 @@ import javax.persistence.Transient;
  * 
  */
 
-
+@Entity
 public class Track {
 
     /*
@@ -36,6 +35,8 @@ public class Track {
 	 */
 	
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	int id;
 
 
@@ -64,6 +65,7 @@ public class Track {
      */
     
     
+    @Embedded
     Duration duration;
     
     public Track() {

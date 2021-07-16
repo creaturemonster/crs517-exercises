@@ -2,7 +2,10 @@ package rain;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
-import javax.servlet.ServletContextListener;import org.springframework.web.context.*;
+import javax.servlet.ServletContextListener;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.*;
 import org.springframework.web.context.support.*;
 
 
@@ -18,9 +21,9 @@ public class RainAppListener implements ServletContextListener {
 		// b. Use the WebApplicationContext to lookup the RainforestService JavaBean
 		// c. Store the RainforestService JavaBean reference in a variable named
 		//    rainforestService
+		ApplicationContext context=WebApplicationContextUtils.getWebApplicationContext(application);
 
-
-
+		RainforestService rainforestService=context.getBean("rainforestService", RainforestService.class);
 
 		// Add to ServletContext
 		application.setAttribute(Constants.RAINFOREST_SERVICE_KEY, rainforestService);
